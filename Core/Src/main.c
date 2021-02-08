@@ -115,13 +115,29 @@ int main(void)
   send(0xDF); // Set attenuation channel 2
   send(0xFF); // Set attenuation noise channel
 
-  send( 0xF0 );
 
+
+     send( 0xF0 );
 /*
+ *
+
   // White Noise N/512
   send( 0b11100100);
-  HAL_Delay(1000);
+  HAL_Delay(2000);
 
+  send( 0xFF );
+  HAL_Delay(2000);
+
+  send( 0xF0 );
+
+
+  // Periodic Noise N/512
+  send( 0b11100000);
+  HAL_Delay(2000);
+
+  send( 0xFF );
+
+  /*
   // White Noise N/1024
   send( 0b11100101);
   HAL_Delay(1000);
@@ -130,9 +146,7 @@ int main(void)
   send( 0b11100110);
   HAL_Delay(1000);
 
-  // Periodic Noise N/512
-  send( 0b11100000);
-  HAL_Delay(1000);
+
 
   // Periodic Noise N/1024
   send( 0b11100001);
@@ -143,22 +157,32 @@ int main(void)
   HAL_Delay(1000);
 */
 
-  // Noise associated with Channel 2 tone
-  for ( int i = 1000 ; i < 8000 ; i+= 1000 )
-  {
+     send( 0xF0 );
 
-	  // White Noise
-	  play( 2, i );
-	  send(0xDF); // Set attenuation channel 2
-	  send( 0b11100011);
-	  HAL_Delay(500);
 
-	  // Periodic Noise
-	  play( 2, i );
-	  send(0xDF); // Set attenuation channel 2
-	  send( 0b11100111);
-	  HAL_Delay(500);
-  }
+     // Noise associated with Channel 2 tone
+     for ( int i = 1000 ; i < 8000 ; i+= 1000 )
+     {
+
+   	  // White Noise
+   	  play( 2, i );
+   	  send(0xDF); // Set attenuation channel 2
+   	  send( 0b11100011);
+   	  HAL_Delay(400);
+
+     }
+
+     // Noise associated with Channel 2 tone
+     for ( int i = 1000 ; i < 8000 ; i+= 1000 )
+     {
+
+
+   	  // Periodic Noise
+   	  play( 2, i );
+   	  send(0xDF); // Set attenuation channel 2
+   	  send( 0b11100111);
+   	  HAL_Delay(400);
+     }
 
   send( 0xFF );
 
@@ -183,49 +207,87 @@ int main(void)
   }
 */
 
-
-  /*
-  play( 0, 261 );
-  HAL_Delay(400);
-
-  play( 0, 293 );
-  HAL_Delay(400);
-
-  play( 0, 329 );
-  HAL_Delay(400);
-
-  play( 0, 349 );
-  HAL_Delay(400);
-
-  play( 0, 392 );
-  HAL_Delay(400);
-
-  play( 0, 440 );
-  HAL_Delay(400);
-
-  play( 0, 493 );
-  HAL_Delay(400);
-
-  play( 0, 523 );
-  HAL_Delay(400);
-*/
-
   /*
 
-  play( 0, 261 );
-  HAL_Delay(400);
-
-  play( 1, 329 );
-  HAL_Delay(400);
-
-  play( 2, 392 );
-  HAL_Delay(4000);
+  for ( int i = 300 ; i < 2000 ; i++ ) {
+	  play( 0, i );
+	  HAL_Delay(1);
+  }
 
   stop(0);
-  stop(1);
-  stop(2);
 */
 
+  // Scales
+
+  /*
+  for ( int i = 1 ; i <= 4 ; i*=2 )
+  {
+	  play( 0, 261*i );
+	  HAL_Delay(400);
+
+	  play( 0, 293*i );
+	  HAL_Delay(400);
+
+	  play( 0, 329*i );
+	  HAL_Delay(400);
+
+	  play( 0, 349*i );
+	  HAL_Delay(400);
+
+	  play( 0, 392*i );
+	  HAL_Delay(400);
+
+	  play( 0, 440*i );
+	  HAL_Delay(400);
+
+	  play( 0, 493*i );
+	  HAL_Delay(400);
+
+  }
+
+  stop(0);
+
+
+
+  play( 0, 1000 );
+*/
+
+  /*
+  for ( int i = 1 ; i <= 4 ; i*=2 )
+  {
+
+	  play( 0, 261*i );
+	  HAL_Delay(400);
+
+	  play( 1, 329*i );
+	  HAL_Delay(400);
+
+	  play( 2, 392*i );
+	  HAL_Delay(2000);
+
+	  stop(0);
+	  stop(1);
+	  stop(2);
+  }
+
+  for ( int i = 1 ; i <= 4 ; i*=2 )
+  {
+
+	  play( 0, 293*i );
+	  HAL_Delay(400);
+
+	  play( 1, 349*i );
+	  HAL_Delay(400);
+
+	  play( 2, 440*i );
+	  HAL_Delay(2000);
+
+	  stop(0);
+	  stop(1);
+	  stop(2);
+  }
+
+*/
   while (1)
   {
 
